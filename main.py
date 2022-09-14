@@ -1,17 +1,3 @@
-from flask import Flask
-
-app = Flask("JobScrapper")
-
-
-@app.route("/")
-def home():
-    return 'hi there!'
-
-
-app.run("0.0.0.0")
-
-
-"""
 from extractors.indeed import extract_indeed_jobs
 from extractors.wwr import extract_wwr_jobs
 from extractors.wanted import extract_wanted_jobs
@@ -28,4 +14,3 @@ wanted = extract_wanted_jobs(keyword)
 jobs = indeed + wwr + wanted
 
 save_to_file(keyword, jobs)
-"""
