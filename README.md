@@ -1,4 +1,4 @@
-# Jop Scrapper Using Python.
+# Jop Scrapper Using Python
 
 ## You can search jobs here : https://replit.com/@hi-rachel/Jop-Scrapper?v=1
 
