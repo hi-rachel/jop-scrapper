@@ -1,19 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Scrapper 🔍</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <title>Job Scrapper 🌏</title>
+  <style>
+    h1 {
+      font-size: 45px;
+      margin-bottom: 30px;
+    }
+    h2 {
+      margin: bottom: 20px;
+      font-size: 25px;
+      font-weight: 500;
+    }
+    #head {
+      display: flex;
+      justify-content: space-between;
+    }
+    footer {
+      margin: 60px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 14px;
+    }
+    .myName {
+      margin-top: 80px;
+    }
+  </style>
 </head>
 <body>
  <main class="container">
-    <h1>Jobs for you</h1>
-  <h4>What job do you want?</h4>
+  <div id="head">
+  <h1>Jobs for you</h1>
+  <button style="width:50px;height:50px;background-color:transparent;border:0;font-size:30px;display:flex;justify-content:center;align-items:center;" id="themeBtn" onclick="themeSwitch()">🌕
+  </button>
+   </div>
+  <h2>What job do you want?</h2>
   <form action="/search">
     <input type="text" name="keyword" placeholder="Write keyword(ex_python)"/>
     <button aria-busy="false" id="searchBtn" onclick="btnLoading()">Search</button>
-    <footer>
+    <footer> 
       <p>Job Scrapping from 'Indeed, We Work Remotely, Wanted, RemoteOk' sites.</p>
+      <p class="myName"><a href="https://replit.com/@hi-rachel/Jop-Scrapper?v=1" target="_blank">ⓒ2022 Rachel Moon</a></p>
     </footer>
+  </form>
+ </main>
+  <script>
+    function btnLoading() {
+      let btn = document.getElementById("searchBtn");
+      let currentLoading = btn.getAttribute("aria-busy");
+      let targetLoading = "true";
+      
+      if (currentLoading === "false") {
+        targetLoading = "true";
+        btn.innerText = "Searching";
+      } else {
+        targetLoading = "false";
+        btn.innerText = "Search";
+      }
+
+      btn.setAttribute('aria-busy', targetLoading);
+    };
+
+    function resetTheme() {
+      let html = document.documentElement;
+      let currentTheme = html.getAttribute("data-theme");
+      localStorage.setItem('theme', currentTheme);
+    };
+
+    resetTheme();
+    
+    function themeSwitch() {
+      let themeBtn = document.getElementById("themeBtn");
+      let html = document.documentElement;
+      let currentTheme = html.getAttribute("data-theme");
+      let targetTheme = "light";
+
+      if (currentTheme === "light") {
+        targetTheme = "dark";
+        themeBtn.innerText = "🌕";
+    } else {
+        targetTheme = "light";
+        themeBtn.innerText = "☀️";
+    }
+
+      html.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+    };
+
+    function comeBackHomeTheme() {
+      let nowTheme = localStorage.getItem('theme');
+      console.log(currentTheme);
+      let html = document.documentElement;
+      
+      if (nowTheme === "dark") {
+        targetTheme = "dark";
+      } else {
+        targetTheme = "light";
+      }
+      html.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('theme', targetTheme);
+    };
+    themeChange();
+</script>
+</body>
 </html>
